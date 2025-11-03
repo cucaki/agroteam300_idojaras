@@ -34,8 +34,16 @@
         <!-- Ide kerül a 7 napos összefoglaló -->
         <div id="seven-day-summary-container" class="seven-day-summary" style="display: none;">
             <h2>7 napos kitekintő - Kiemelt események (minden helyszínen)</h2>
-            <p>Figyelem: itt csak a 60 km/h feletti széllökések és a jelentősebb (5mm feletti) napi csapadék jelenik meg.</p>
+            <p>Figyelem: itt csak a <span class="highlight">40 km/h feletti széllökések</span> és a jelentősebb (<span class="rain-highlight">5mm feletti</span>) napi csapadék jelenik meg.</p>
             <ul id="seven-day-list"></ul>
+        </div>
+
+        <!-- Új szekció: Információ az adatokról -->
+        <div id="data-source-info" class="data-source">
+            <h4>Információ az adatokról</h4>
+            <p>
+                Az előrejelzések az <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> ingyenes szolgáltatásától származnak. Az adatok több, nagy pontosságú nemzetközi (ECMWF, GFS) és regionális (pl. ICON-D2) időjárási modell eredményeinek aggregálásával jönnek létre a lehető legpontosabb előrejelzés érdekében.
+            </p>
         </div>
     </div>
 
