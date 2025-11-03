@@ -118,7 +118,7 @@ function renderSelectedForecasts() {
                         <h4>Következő 3 nap (szél és csapadék)</h4>
                         ${data.daily.slice(2, 4).map(day => `
                             <div>
-                                <strong>${new Date(day.date).toLocaleDateString('hu-HU', { weekday: 'long' })}:</strong>
+                                <strong>${new Date(day.date).toLocaleString('hu-HU', { weekday: 'long' })}:</strong>
                                 &nbsp;Eső: ${day.precipSum} mm, Szél: max ${day.maxWind} km/h (lökések: ${day.maxGust} km/h)
                             </div>
                         `).join('')}
@@ -176,7 +176,7 @@ function renderSevenDaySummary(summary) {
             hasSignificantEvent = true;
             const dayHTML = `
                 <li>
-                    <strong>${new Date(day.date).toLocaleDateString('hu-HU', { weekday: 'long', month: 'short', day: 'numeric' })}</strong>
+                    <strong>${new Date(day.date).toLocaleString('hu-HU', { weekday: 'long', month: 'short', day: 'numeric' })}</strong>
                     ${day.highWind.length > 0 ? `<div>💨 <span class="highlight">Erős szél:</span> ${day.highWind.join(', ')}</div>` : ''}
                     ${day.heavyRain.length > 0 ? `<div>💧 <span class="rain-highlight">Jelentős eső:</span> ${day.heavyRain.join(', ')}</div>` : ''}
                 </li>`;
@@ -190,7 +190,7 @@ function renderSevenDaySummary(summary) {
 }
 
 
-// ----- ADATFELDOLGOZÓ FÜGGVÉNYEK (ezek változatlanok) -----
+// ----- ADATFELDOLGOZÓ FÜGGVÉNYEK -----
 
 function processWeatherData(apiData) {
   if(!apiData) return null;
@@ -225,7 +225,9 @@ function processWeatherData(apiData) {
 
 function generateSevenDaySummary(allData) {
     const summaryByDay = {};
-    const WIND_GUST_THRESHOLD = 60, RAIN_SUM_THRESHOLD = 5;
+    // === ITT TÖRTÉNT A MÓDOSÍTÁS ===
+    const WIND_GUST_THRESHOLD = 40; // km/h (eredetileg 60 volt)
+    const RAIN_SUM_THRESHOLD = 5; // mm
 
     for (const locationName in allData) {
         const weather = allData[locationName];
