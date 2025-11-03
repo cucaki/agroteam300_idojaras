@@ -75,3 +75,25 @@ h3 { font-size: 1.4em; color: #87b2f0; margin-bottom: 0.8rem; }
 .selected-marker {
   filter: hue-rotate(120deg) brightness(1.5);
 }
+
+/* Új stílusok az adatforrás infóhoz */
+.data-source {
+  text-align: left;
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #444;
+  font-size: 0.9em;
+  color: #aaa;
+}
+.data-source h4 {
+  color: #ccc;
+  margin-top: 0;
+  font-size: 1.2em;
+}
+.data-source a {
+  color: #87b2f0;
+  text-decoration: none;
+}
+.data-source a:hover {
+  text-decoration: underline;
+}
