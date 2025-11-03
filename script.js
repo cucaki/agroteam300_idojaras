@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Térkép inicializálása
 function initializeMap() {
     map = L.map('map').setView([47.95, 16.9], 9);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{y}.png', {
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{y}/{png}', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
@@ -167,28 +167,27 @@ async function fetchAllDataForSummary() {
     sevenDayContainer.style.display = 'block';
 }
 
-// === ITT TÖRTÉNT A MÓDOSÍTÁS ===
-// A függvény most minden napot kiír, és jelzi, ha az időjárás nyugodt.
+// === JAVÍTOTT FÜGGVÉNY ===
+// Ez a függvény most már robusztusabban kezeli a napok listázását.
 function renderSevenDaySummary(summary) {
     sevenDayList.innerHTML = ''; // Lista kiürítése
-    
-    // A mai napot kihagyjuk, a következő 7 napot mutatjuk
-    const upcomingDays = summary.slice(1); 
 
-    if (upcomingDays.length === 0) {
+    // Ellenőrizzük, hogy a 'summary' egy tömb és vannak-e benne elemek
+    if (!Array.isArray(summary) || summary.length === 0) {
         sevenDayList.innerHTML = '<li>Nem sikerült betölteni a heti előrejelzést.</li>';
         return;
     }
 
-    upcomingDays.forEach(day => {
+    summary.forEach(day => {
         let dayHTML;
         const hasSignificantEvent = day.highWind.length > 0 || day.heavyRain.length > 0;
+        const dateString = new Date(day.date).toLocaleDateString('hu-HU', { weekday: 'long', month: 'short', day: 'numeric' });
 
         if (hasSignificantEvent) {
             // Ha van esemény, listázzuk őket
             dayHTML = `
                 <li>
-                    <strong>${new Date(day.date).toLocaleDateString('hu-HU', { weekday: 'long', month: 'short', day: 'numeric' })}</strong>
+                    <strong>${dateString}</strong>
                     ${day.highWind.length > 0 ? `<div>💨 <span class="highlight">Erős szél:</span> ${day.highWind.join(', ')}</div>` : ''}
                     ${day.heavyRain.length > 0 ? `<div>💧 <span class="rain-highlight">Jelentős eső:</span> ${day.heavyRain.join(', ')}</div>` : ''}
                 </li>`;
@@ -196,7 +195,7 @@ function renderSevenDaySummary(summary) {
             // Ha nincs esemény, jelezzük, hogy nyugodt az idő
             dayHTML = `
                 <li>
-                    <strong>${new Date(day.date).toLocaleDateString('hu-HU', { weekday: 'long', month: 'short', day: 'numeric' })}</strong>
+                    <strong>${dateString}</strong>
                     <div>✅ Nyugodt idő várható.</div>
                 </li>`;
         }
@@ -249,9 +248,15 @@ function generateSevenDaySummary(allData) {
         const displayName = locations.find(l=>l.name === locationName).name_display || locationName;
 
         weather.daily.forEach(day => {
-            if (!summaryByDay[day.date]) summaryByDay[day.date] = { date: day.date, highWind: [], heavyRain: [] };
-            if (day.maxGust >= WIND_GUST_THRESHOLD) summaryByDay[day.date].highWind.push(`${displayName} (${Math.round(day.maxGust)} km/h)`);
-            if (day.precipSum >= RAIN_SUM_THRESHOLD) summaryByDay[day.date].heavyRain.push(`${displayName} (${day.precipSum} mm)`);
+            if (!summaryByDay[day.date]) {
+                summaryByDay[day.date] = { date: day.date, highWind: [], heavyRain: [] };
+            }
+            if (day.maxGust >= WIND_GUST_THRESHOLD) {
+                summaryByDay[day.date].highWind.push(`${displayName} (${Math.round(day.maxGust)} km/h)`);
+            }
+            if (day.precipSum >= RAIN_SUM_THRESHOLD) {
+                summaryByDay[day.date].heavyRain.push(`${displayName} (${day.precipSum} mm)`);
+            }
         });
     }
     return Object.values(summaryByDay).sort((a,b) => new Date(a.date) - new Date(b.date));
