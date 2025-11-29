@@ -10,7 +10,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 body { margin: 0; }
+
 #root {
   width: 100%;
   max-width: 1280px;
@@ -19,6 +21,7 @@ body { margin: 0; }
   text-align: center;
   box-sizing: border-box;
 }
+
 #map {
   height: 400px;
   width: 100%;
@@ -26,51 +29,90 @@ body { margin: 0; }
   border-radius: 8px;
   border: 2px solid #555;
 }
-.forecast-container, .seven-day-summary {
+
+.forecast-container,
+.seven-day-summary {
   text-align: left;
   background-color: #2f2f2f;
   padding: 1.5rem;
   border-radius: 8px;
   margin-top: 2rem;
 }
+
 .location-forecast {
   border-bottom: 1px solid #444;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
 }
+
 .location-forecast:last-child { border-bottom: none; }
-h1 { font-size: 2.2em; line-height: 1.1; margin-bottom: 0.5em;}
-h2 { font-size: 1.8em; margin-top: 0; border-bottom: 2px solid #666; padding-bottom: 0.5rem;}
-h3 { font-size: 1.4em; color: #87b2f0; margin-bottom: 0.8rem; }
+
+h1 {
+  font-size: 2.2em;
+  line-height: 1.1;
+  margin-bottom: 0.5em;
+}
+
+h2 {
+  font-size: 1.8em;
+  margin-top: 0;
+  border-bottom: 2px solid #666;
+  padding-bottom: 0.5rem;
+}
+
+h3 {
+  font-size: 1.4em;
+  color: #87b2f0;
+  margin-bottom: 0.8rem;
+}
+
 .loading {
   font-size: 1.2rem;
   font-style: italic;
   color: #aaa;
   margin: 2rem 0;
 }
+
 .day-forecast {
   margin-top: 1rem;
   padding-left: 1rem;
   border-left: 3px solid #4a4a4a;
 }
-.rain-details, .wind-details {
+
+.rain-details,
+.wind-details {
   margin-left: 1rem;
   color: #ccc;
 }
-.highlight { color: #f7a25f; font-weight: bold; }
-.rain-highlight { color: #61dafb; font-weight: bold; }
-.seven-day-summary ul { list-style-type: none; padding-left: 0; }
+
+.highlight {
+  color: #f7a25f;
+  font-weight: bold;
+}
+
+.rain-highlight {
+  color: #61dafb;
+  font-weight: bold;
+}
+
+.seven-day-summary ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
 .seven-day-summary li {
-    background-color: #383838;
-    padding: 0.8rem;
-    border-radius: 5px;
-    margin-bottom: 0.5rem;
+  background-color: #383838;
+  padding: 0.8rem;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
 }
+
 .seven-day-summary strong {
-    display: block;
-    color: #87b2f0;
-    margin-bottom: 0.3rem;
+  display: block;
+  color: #87b2f0;
+  margin-bottom: 0.3rem;
 }
+
 /* Egyedi stílus a kiválasztott markernek */
 .selected-marker {
   filter: hue-rotate(120deg) brightness(1.5);
@@ -85,15 +127,18 @@ h3 { font-size: 1.4em; color: #87b2f0; margin-bottom: 0.8rem; }
   font-size: 0.9em;
   color: #aaa;
 }
+
 .data-source h4 {
   color: #ccc;
   margin-top: 0;
   font-size: 1.2em;
 }
+
 .data-source a {
   color: #87b2f0;
   text-decoration: none;
 }
+
 .data-source a:hover {
   text-decoration: underline;
 }
