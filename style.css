@@ -28,6 +28,7 @@ body { margin: 0; }
   margin-bottom: 2rem;
   border-radius: 8px;
   border: 2px solid #555;
+  z-index: 1; /* Biztosítja, hogy a térkép rétegei megfelelően működjenek */
 }
 
 .forecast-container,
