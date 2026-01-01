@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Címerezési Időjárás-előrejelző</title>
     
-    <!-- Leaflet CSS a térképhez -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin=""/>
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""/>
     
-    <!-- Saját stíluslap -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,26 +17,21 @@
         <h1>Címerezési Időjárás-előrejelző</h1>
         <p>Válassz egy vagy több települést a térképen a részletes előrejelzéshez.</p>
     
-        <!-- A térkép konténere -->
         <div id="map"></div>
     
-        <!-- A betöltés jelző -->
         <div id="loader" class="loading">Adatok betöltése...</div>
 
-        <!-- Ide kerülnek a kiválasztott helyek előrejelzései -->
         <div id="forecast-container" class="forecast-container" style="display: none;">
-             <h2>Részletes előrejelzés (1-3 nap)</h2>
-             <div id="selected-forecasts"></div>
+              <h2>Részletes előrejelzés (1-3 nap)</h2>
+              <div id="selected-forecasts"></div>
         </div>
     
-        <!-- Ide kerül a 7 napos összefoglaló -->
         <div id="seven-day-summary-container" class="seven-day-summary" style="display: none;">
             <h2>7 napos kitekintő - Kiemelt események (minden helyszínen)</h2>
             <p>Figyelem: itt csak a <span class="highlight">40 km/h feletti széllökések</span> és a jelentősebb (<span class="rain-highlight">5mm feletti</span>) napi csapadék jelenik meg.</p>
             <ul id="seven-day-list"></ul>
         </div>
 
-        <!-- Új szekció: Információ az adatokról -->
         <div id="data-source-info" class="data-source">
             <h4>Információ az adatokról</h4>
             <p>
@@ -47,12 +40,10 @@
         </div>
     </div>
 
-    <!-- Leaflet JS a térképhez -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""></script>
     
-    <!-- Saját JavaScript logika -->
     <script src="script.js"></script>
 </body>
 </html>
